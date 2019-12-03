@@ -21,13 +21,9 @@ jobs:
     - name: Figma Action
       uses: primer/figma-action@v1.0.0-alpha.2
       with:
-        args: "format=svg outputDir=./src/"
+        args: "format=png scale=3 outputDir=./src/"
       env:
         FIGMA_FILE_URL: ${{ secrets.FIGMA_FILE_URL }}
         FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
     - run: yarn generate
     - run: yarn build
-    - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > ~/.npmrc
-    - run: yarn publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
